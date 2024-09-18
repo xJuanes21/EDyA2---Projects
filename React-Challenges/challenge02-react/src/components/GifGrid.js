@@ -33,10 +33,10 @@ const getGifs = async (category) => {
 
     return (
         <>
-            <h3>{category}</h3>
             <div className="card-grid">
                 {images.map((image, key) => {
-                    return <GifItem key={key} {...image} />;
+                    return <GifItem  key={key} category={category}
+                    {...image} />;
                 })}
             </div>
         </>
