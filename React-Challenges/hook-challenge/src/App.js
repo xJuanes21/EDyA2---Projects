@@ -1,24 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 
-import { useState } from "react";
+import  useCounter  from "./hooks/useCounter";
 
-const App = ({ value }) => {
-
-  const [counter, setCounter] = useState(value);
-
-  const handleAdd = () => {
-    setCounter(counter + 1);
-  };
-
-  const handleSubstract = () => {
-    setCounter(counter - 1);
-  };
-
-  const handleReset = () => {
-    setCounter(value);
-  };
-
+const App = () => {
+  const value = 7
+  const {handleAdd, handleReset, handleSubstract, counter} = useCounter(value)
   return (
     <>
       <div className='App'>
