@@ -1,18 +1,30 @@
 import './App.css';
 import { useCounter } from './components/UseCounter';
-
+import { useFetch } from './components/UseFetch';
 function App() {
-  const value = 0;
-  const { counter, increment, decrement, reset } = useCounter(value);
+  const { counter, increment } = useCounter(1); // Asegúrate de destructurar bien
+  const { data, isLoading, hasError } = useFetch(`https://api.breakingbadquotes.xyz/v1/quotes/5${counter}`);
 
   return (
-    <>
-      <h1>Counter</h1>
-      <span>{counter}</span>
-      <button onClick={increment}> +1 </button>
-      <button onClick={decrement}> -1 </button>
-      <button onClick={reset}> Reinicio </button>
-    </>
+    <div className="container"> {/* Envuelve el contenido en la clase container */}
+      <h1>Breaking Bad Quotes</h1>
+      <hr />
+
+      {
+        isLoading ? (
+          <div className="alert alert-info text-center">Loading...</div>
+        ) : (
+          <blockquote className="blockquote text-end">
+            <p className="mb-1">{data?.[0]?.quote}</p>
+            <footer className="blockquote-footer">{data?.[0]?.author}</footer>
+          </blockquote>
+        )
+      }
+
+      <button className="btn btn-primary" onClick={increment}>
+        Next Quote
+      </button>
+    </div>
   );
 }
 
