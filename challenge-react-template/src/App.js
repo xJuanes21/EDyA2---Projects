@@ -1,25 +1,17 @@
 import './App.css';
-import { AddCategory } from './components/AddCategory';
-import { useState } from 'react';
-import { GifGrid } from './components/GifGrid';
-function App() {
-  const [categories, setCategories] = useState(["First Category"])
+import { useCounter } from './components/UseCounter';
 
-  const onAddCategory = (category) => {
-    setCategories(list => [...list, category])
-  }
+function App() {
+  const value = 0;
+  const { counter, increment, decrement, reset } = useCounter(value);
 
   return (
     <>
-      <h1>Gif Expert</h1>
-      <AddCategory onAddCategory={onAddCategory} />
-      {
-        categories.map(
-          (category, key) => {
-            return <GifGrid category={category} key={key} />
-          }
-        )
-      }
+      <h1>Counter</h1>
+      <span>{counter}</span>
+      <button onClick={increment}> +1 </button>
+      <button onClick={decrement}> -1 </button>
+      <button onClick={reset}> Reinicio </button>
     </>
   );
 }
