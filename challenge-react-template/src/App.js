@@ -1,14 +1,22 @@
-import React from 'react';
-import { TodoApp } from './components/TodoApp';
-
-
+import React, { useEffect, useReducer } from "react";
+import NavComponent from "./components/NavComponent";
+import { Route, Routes } from "react-router-dom";
+import Experience from "./pages/Experience";
+import Portfolio from "./pages/Portfolio";
+import AboutMe from "./pages/AboutMe";
+import Home from "./pages/Home";
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <TodoApp />       
-      </header>
-    </div>
+    <>
+      <NavComponent></NavComponent>
+      <Routes >
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/experience" element={<Experience/>}></Route>
+        <Route path="/portfolio" element={<Portfolio/>}></Route>
+        <Route path="/about-me" element={<AboutMe/>}></Route>
+      </Routes>
+    </>
   );
 }
 
