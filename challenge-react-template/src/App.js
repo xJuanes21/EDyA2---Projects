@@ -1,22 +1,19 @@
-import React, { useEffect, useReducer } from "react";
-import NavComponent from "./components/NavComponent";
-import { Route, Routes } from "react-router-dom";
-import Experience from "./pages/Experience";
-import Portfolio from "./pages/Portfolio";
-import AboutMe from "./pages/AboutMe";
-import Home from "./pages/Home";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { TodoApp } from './components/TodoApp';
+import PokemonViewer from './components/PokemonViewer';
+
 function App() {
-  
   return (
-    <>
-      <NavComponent></NavComponent>
-      <Routes >
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/experience" element={<Experience/>}></Route>
-        <Route path="/portfolio" element={<Portfolio/>}></Route>
-        <Route path="/about-me" element={<AboutMe/>}></Route>
-      </Routes>
-    </>
+    <div className="App">
+      <header className="App-header">
+        <Routes>
+          <Route path="/" element={<Navigate to="/todo" replace />} />
+          <Route path="/todo" element={<TodoApp />} />
+          <Route path="/pokemon" element={<PokemonViewer />} />
+        </Routes>
+      </header>
+    </div>
   );
 }
 
